@@ -1,0 +1,7 @@
+"track" AliceInWonderland.txt
+-v "t.." TaleOfTwoCities_withoutContents.txt
+-i "a.'.a" TaleOfTwoCities_withoutContents.txt
+-i "mEsSeNgErs" TaleOfTwoCities_withoutContents.txt
+-i "rAbBiT" AliceInWonderland.txt
+"..............................................................................." AliceInWonderland.txt
+-i -v " " TaleOfTwoCities_withoutContents.txt

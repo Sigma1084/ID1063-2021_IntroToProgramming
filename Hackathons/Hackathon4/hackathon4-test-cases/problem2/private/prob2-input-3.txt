@@ -1,0 +1,6 @@
+-i -v ".h." AliceInWonderland.txt
+-i "..;" AliceInWonderland.txt
+-v "'" AliceInWonderland.txt
+-i "staRl" AliceInWonderland.txt
+"ast.a" AliceInWonderland.txt
+-v ".Sydney Carton" TaleOfTwoCities_withoutContents.txt

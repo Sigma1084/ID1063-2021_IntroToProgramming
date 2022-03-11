@@ -1,0 +1,6 @@
+-i -v "e" AliceInWonderland.txt
+".........................................................................." TaleOfTwoCities_withoutContents.txt
+-v """ TaleOfTwoCities_withoutContents.txt
+-i ".......,..............,.......s......,....." TaleOfTwoCities_withoutContents.txt
+-i "--s." AliceInWonderland.txt
+".?." AliceInWonderland.txt
