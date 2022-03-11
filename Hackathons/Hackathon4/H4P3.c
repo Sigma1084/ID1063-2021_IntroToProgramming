@@ -111,4 +111,5 @@ int main() {
     }
 
     free(q.arr);
+    return 0;
 }

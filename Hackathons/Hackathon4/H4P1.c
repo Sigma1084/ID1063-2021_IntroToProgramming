@@ -30,4 +30,8 @@ int main(int argc, char *argv[]) {
         else
             exit(0);  // Exit since we encountered EOF
     }
+
+    free(line);
+    fclose(fp);
+    return 0;
 }

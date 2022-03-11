@@ -38,4 +38,5 @@ int main() {
     while(scanf("%llu %llu", &n, &k) != -1) {
         printf("%llu\n", power(n, k));
     }
+    return 0;
 }

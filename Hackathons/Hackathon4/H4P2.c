@@ -109,4 +109,5 @@ int main(int argc, char *argv[]) {
 
     free(line);
     fclose(fp);
+    return 0;
 }

@@ -50,5 +50,5 @@ int main() {
     while(scanf("%d", &n) != -1)
         solve(n);
 
-    return(0);
+    return 0;
 }
