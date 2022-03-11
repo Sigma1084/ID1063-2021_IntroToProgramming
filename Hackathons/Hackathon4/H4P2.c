@@ -31,8 +31,7 @@ void toLower(char *str) {
 
 // The check function checks if the given pattern is present in the line
 int check(const char *pattern, const char *line, int lP, int lL) {
-    lL = length(line);
-    
+
     for (int i=0; i + lP < lL; i++) {
         if (line[i] == pattern[0] || pattern[0] == '.') {
             int present = 1;
@@ -63,6 +62,9 @@ int main(int argc, char *argv[]) {
     char *pattern = argv[argc-2];
     FILE *fp = fopen(argv[argc-1], "r");
 
+    if (fp == NULL)
+        exit(0);  // File Pointer is NULL
+
     int isI = 0;
     int isV = 0;
 
@@ -78,14 +80,11 @@ int main(int argc, char *argv[]) {
     if (isI)
         toLower(pattern);
 
-    // Assuming the line length is less than 256
-    char *line = (char *) malloc(sizeof (char) * 256);
+    char *line = NULL;  // This is where the line will be stored after running getline
+    size_t lenLine;  // Parameter for getline
+    int lenPat = length(pattern);  // Length of the pattern
 
-    int lNo = 1;
-    size_t lenLine;
-    int lenPat = length(pattern);
-    
-    while(getline(&line, &lenLine, fp) != -1) {
+    for (int lNo = 1; getline(&line, &lenLine, fp) != -1; lNo++) {
 
         char *lineCpy = line;
         if (isI) {
@@ -95,16 +94,16 @@ int main(int argc, char *argv[]) {
             toLower(lineCpy);
         }
 
-        if (check(pattern, lineCpy, lenPat, (int)lenLine)) {
+        if (check(pattern, lineCpy, lenPat, lenLine)) {
+            // Entered if pattern is present
             if (!isV)
                 printf ("%d: %s", lNo, line);  // The Line already has a '\n' in the end
         }
         else {
+            // Entered if the pattern is absent
             if (isV)
                 printf ("%d: %s", lNo, line);  // The Line already has a '\n' in the end
         }
-        
-        lNo++;
     }
 
     free(line);

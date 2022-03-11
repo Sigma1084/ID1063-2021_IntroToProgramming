@@ -10,25 +10,34 @@ int main(int argc, char *argv[]) {
     if (fp == NULL)
         exit(0);  // File Pointer is NULL
 
-    char *line = (char *) malloc(sizeof(char) * 256);
+    char *line = NULL;
     size_t lineLen;
 
     for (int i=0; i<k; i++) {
         if (getline(&line, &lineLen, fp) != -1)
             printf("%s", line);
-        else
-            exit(0);  // Exit since we encountered EOF
+        else {
+            // Exit since we encountered EOF
+            free(line);
+            fclose(fp);
+            exit(0);
+        }
     }
 
-    for (char c = getchar(); c != -1; c = getchar()) {
+    char c;
+    while ((c = getchar()) != -1) {
         if (c != '\n')
             continue;
 
         // We are now sure c is '\n'
         if (getline(&line, &lineLen, fp) != -1)
             printf("%s", line);
-        else
-            exit(0);  // Exit since we encountered EOF
+        else {
+            // Exit since we encountered EOF
+            free(line);
+            fclose(fp);
+            exit(0);
+        }
     }
 
     free(line);

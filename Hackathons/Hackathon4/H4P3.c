@@ -26,6 +26,11 @@
  *
  */
 
+
+// Arbitrarily define the initial size of the queue
+// We keep doubling the size of the queue as and when required
+#define INITIAL_SIZE 10
+
 // Struct Definition
 struct Queue {
     int maxSize;
@@ -59,12 +64,17 @@ Queue createQueue(int size) {
 
 // Resizes the existing queue to double the size
 Queue resized(Queue q) {
-    Queue newQ = createQueue(2 * q.size);
-    for (int i = 0; i < q.size; i++)
-        newQ.arr[i] = q.arr[(i + q.start) % q.maxSize];
-    free(q.arr);
-    newQ.size = q.size;
-    return newQ;
+    // Doubling the total size of the array using realloc
+    q.arr = (int *) realloc(q.arr, sizeof(int) * 2 * q.maxSize);
+
+    // All the elements to the start are sent to the next half of the original array
+    for (int i = 0; i < q.start; i++)
+        q.arr[q.maxSize + i] = q.arr[i];
+
+    q.maxSize *= 2;  // The max size of the new array is double
+    // Size remains constant
+
+    return q;
 }
 
 // Adds an element to the queue and returns the new queue
@@ -98,7 +108,7 @@ Queue removeElement(Queue q) {
 // The main method
 int main() {
     char c;
-    Queue q = createQueue(100);
+    Queue q = createQueue(INITIAL_SIZE);
 
     while (scanf("%c", &c) != -1) {
         if (c == 'D') 
