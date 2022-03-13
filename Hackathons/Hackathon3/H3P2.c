@@ -171,14 +171,17 @@ void solve(char *str1, char *str2, int l1, int l2) {
 
 int main() {
     int n = 100;
-    char *a, *b;
+    char *a = NULL, *b = NULL;
+    size_t l1, l2;
 
-    a = (char *) malloc(sizeof(char) * n);
-    b = (char *) malloc(sizeof(char) * n);
+    while(getline(&a, &l1, stdin) != -1 && getline(&b, &l2, stdin) != -1) {
+        l1 = length(a);
+        l2 = length(b);
 
-    while(scanf("%s %s",a,b) != -1) {
-        int l1 = length(a);
-        int l2 = length(b);
+        // By using getline, our a and b contain a \n in the end.
+        // Changing the last character to '\0' and decrementing length
+        a[--l1] = '\0';
+        b[--l2] = '\0';
 
         // Manipulating such that Magnitude(str1) > Magnitude(str2)
         if (greater(a, b, l1, l2) == 2)

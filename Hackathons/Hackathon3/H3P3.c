@@ -36,8 +36,8 @@ void repeat(int *prev, int k, int rem) {
 
 // The function that directs to the required function
 void solve (int n) {
-    // Using an array to store all the numbers... arbitrarily setting the limit to 100 000
-    int *prev = (int *) malloc(sizeof (int) * 100000);
+    // Using an array to store all the numbers... The max will be n
+    int *prev = (int *) malloc(sizeof (int) * n);
     int k = 0;
     repeat(prev, k, n);
     free(prev);

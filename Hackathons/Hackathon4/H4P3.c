@@ -67,7 +67,7 @@ Queue resized(Queue q) {
     // Doubling the total size of the array using realloc
     q.arr = (int *) realloc(q.arr, sizeof(int) * 2 * q.maxSize);
 
-    // All the elements to the start are sent to the next half of the original array
+    // All the elements before the starting element are sent to the next half of the original array
     for (int i = 0; i < q.start; i++)
         q.arr[q.maxSize + i] = q.arr[i];
 
